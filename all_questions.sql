@@ -1,9 +1,9 @@
-// Question 1 - How many customers has Foodie-Fi ever had?
+-- Question 1 - How many customers has Foodie-Fi ever had?
 
 SELECT COUNT(DISTINCT CUSTOMER_ID) AS CUSTOMER_COUNT
 FROM SUBSCRIPTIONS
 
-// Question 2 - What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
+-- Question 2 - What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
 
 SELECT
 PLAN_NAME
@@ -16,8 +16,7 @@ WHERE PLAN_NAME = 'trial'
 GROUP BY PLAN_NAME
 ,MONTH
 
-
-// Question 3 - What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
+-- Question 3 - What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
 
 SELECT COUNT(PLAN_NAME) AS EVENTS
 ,PLAN_NAME
@@ -28,7 +27,7 @@ WHERE YEAR(START_DATE) > 2020
 GROUP BY 
 PLAN_NAME
 
-// Question 4 - What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
+-- Question 4 - What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
 
 SELECT 
 (SELECT COUNT(DISTINCT CUSTOMER_ID) FROM SUBSCRIPTIONS) AS CUSTOMER_COUNT
@@ -41,7 +40,7 @@ AS CHURN_RATE
 FROM SUBSCRIPTIONS 
 WHERE PLAN_ID = 4
 
-// Question 5 - How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
+-- Question 5 - How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
 
 WITH CTE AS (
 SELECT CUSTOMER_ID
@@ -61,7 +60,7 @@ FROM CTE
 WHERE ROW_NUMBER = 2
 AND PLAN_NAME = 'churn'
 
-// Question 6 - What is the number and percentage of customer plans after their initial free trial?
+-- Question 6 - What is the number and percentage of customer plans after their initial free trial?
 
 WITH CTE AS (
 SELECT CUSTOMER_ID
@@ -79,7 +78,7 @@ FROM CTE
 WHERE ROW_NUMBER = 2
 GROUP BY PLAN_NAME
 
-// Question 7 - What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
+-- Question 7 - What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
 
 WITH CTE AS( 
 SELECT * 
@@ -97,7 +96,7 @@ ON CTE.PLAN_ID = P.PLAN_ID
 WHERE ROW_NUMBER = 1
 GROUP BY PLAN_NAME
 
-// Question 8 - How many customers have upgraded to an annual plan in 2020?
+-- Question 8 - How many customers have upgraded to an annual plan in 2020?
 
 SELECT COUNT(CUSTOMER_ID) AS UPGRADED
 FROM SUBSCRIPTIONS AS S
@@ -105,7 +104,7 @@ INNER JOIN PLANS AS P ON P.PLAN_ID = S.PLAN_ID
 WHERE DATE_PART('year',START_DATE) = 2020
 AND PLAN_NAME = 'pro annual'
 
-// Question 9 - How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?
+-- Question 9 - How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?
 
 WITH TRIAL_TABLE AS(
 SELECT CUSTOMER_ID
@@ -126,7 +125,7 @@ FROM TRIAL_TABLE AS T
 INNER JOIN ANNUAL_TABLE AS A
 ON T.CUSTOMER_ID = A.CUSTOMER_ID
 
-// Question 10 - Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
+-- Question 10 - Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
 
 WITH TRIAL_TABLE AS(
 SELECT 
@@ -163,7 +162,7 @@ INNER JOIN ANNUAL_TABLE AS A
 ON T.CUSTOMER_ID = A.CUSTOMER_ID
 GROUP BY 1
 
-// Question 11 - How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
+-- Question 11 - How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
 
 WITH PRO_MONTHLY AS (
 SELECT CUSTOMER_ID
