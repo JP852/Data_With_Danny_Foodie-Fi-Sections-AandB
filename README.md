@@ -1,10 +1,12 @@
 # Data_With_Danny_Foodie-Fi-Sections-AandB
 
-#### Link to Challenge
+![image](https://github.com/JP852/Data_With_Danny_Foodie-Fi-Sections-AandB/assets/142391590/c2ef89c7-fb66-4e4b-b135-d0e924a84216)
+
+## Link to Challenge
 
 https://8weeksqlchallenge.com/case-study-3/
 
-#### SQL Techniques Used
+## SQL Techniques Used
 
 - CTEs
 - Table Joins
