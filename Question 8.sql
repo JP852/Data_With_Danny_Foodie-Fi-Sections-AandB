@@ -1,7 +1,0 @@
-//8. How many customers have upgraded to an annual plan in 2020?
-
-SELECT COUNT(CUSTOMER_ID) AS UPGRADED
-FROM SUBSCRIPTIONS AS S
-INNER JOIN PLANS AS P ON P.PLAN_ID = S.PLAN_ID
-WHERE DATE_PART('year',START_DATE) = 2020
-AND PLAN_NAME = 'pro annual'
